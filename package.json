@@ -1,11 +1,25 @@
 {
   "name": "remotelogcatserver",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Serves LogCat output for a connected device.",
-  "main": "index.js",
-  "author": "Josh McDale (jmcdale.com)",
-  "license": "MIT",
+  "author": {
+    "name": "Josh McDale",
+    "url": "http://jmcdale.com"
+  },
+  "bin": {
+    "remotelogcatserver": "./remotelogcatserver.js"
+  },
   "dependencies": {
     "socket.io": "1.3.4"
+  },
+  "engines": {
+    "node": "~0.12.0"
+  },
+  "license": "MIT",
+  "main": "remotelogcatserver.js",
+  "preferGlobal": "true",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jmcdale/RemoteLogCatServer.git"
   }
 }
