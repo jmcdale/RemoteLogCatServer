@@ -12,5 +12,9 @@ function LogCatLine(originalLine) {
     }
 }
 
+LogCatLine.prototype.setPidName = function (name) {
+    this.pidName = name;
+};
+
 // export the class
 module.exports = LogCatLine;

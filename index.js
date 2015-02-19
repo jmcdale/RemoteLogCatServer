@@ -1,9 +1,11 @@
-require('child_process').execSync('adb logcat -c');
+var childProcess = require('child_process');
 var util = require('util');
 var server = require('http').createServer();
 var io = require('socket.io')(server);
-var spawn = require('child_process').spawn;
 var LogCatLine = require('./Objects/LogCatLine');
+
+childProcess.execSync('adb logcat -c');
+var spawn = childProcess.spawn;
 
 var logcat = spawn('adb', ['logcat']);
 var emit = false;
@@ -54,6 +56,9 @@ logcat.stdout.on('data', function (chunk) {
     if (emit == true) {
         //TODO Chunk might be more than one line. Split it and emit multiple.
         var line = new LogCatLine("" + chunk);
+        var pidName = childProcess.execSync('adb shell ps ' + line.pid);//.split(' ');
+        pidName = ("" + pidName).split(" ").splice(-1)[0].trim();
+        line.setPidName(pidName);
         console.log("Emitting Data");
         io.emit("NEW_LOGCAT_LINE", line);
     }
